@@ -1,58 +1,59 @@
 //CONSTRUCTOR SERVICE
-app.service("constructor",[function(){
-  
-  var _self = this;
+app.service("dataModel",function(){
 
-  var setValue = function(value){
-    this.value = value;
+  this.Construct = function(){
+    this.state = false;
+    this.list   = [];
+    this.value  = "";
   }
 
-  //TOGGLE CONSTRUCTOR THAT CAN BE USED FOR CREATING A TOGGLING MODEL i.e POPUPS, MESSAGES etc.
-  this.Toggle = function(defaultState){
-    this.state  = defaultState || false;
-    this.msg  = '';
+  this.Construct.prototype.hide = function(){
+    this.state = false;
   }
-
-  this.Toggle.prototype.show = function(msg){
-    if(!this.state)
-      this.state = true;
-
-    if(msg != undefined)
-      this.msg = msg;
-  };
-
-  this.Toggle.prototype.hide = function(){
-    if(this.state)
-      this.state = false;
-
-    if(this.msg != '')
-      this.msg = '';
-  };
-
-  this.Toggle.prototype.toggle = function(){
+  this.Construct.prototype.show = function(){
+    this.state = true;
+  }
+  this.Construct.prototype.toggle = function(){
     this.state = !this.state;
   }
 
-  //TYPE OF CONSTRUCTOR WHICH CAN BE USED AS MODEL WHICH HAS VALUE, LIST AND FILTERS.
-  this.Data = function(){
+  this.Construct.prototype.setValue = function(value){
+    this.value = value;
+  }
+
+  this.Construct.prototype.clearValue = function(){
     this.value = "";
+  }
+
+  this.Construct.prototype.setValueFromListByKey = function(keyName){
+    
+    var self = this;
+    for(var i = 0; i < self.list.length; i++){
+      if(self.list[i][keyName] == true){
+        self.value = self.list[i];
+        break;
+      }
+    }
+  }
+  
+  this.Construct.prototype.setList = function(arr){
+    this.list = arr;
+  }
+  
+  this.Construct.prototype.clearList = function(){
     this.list = [];
-    this.filter = "";
   }
 
-  this.Data.prototype.setList = function(list){
-    this.list = list;
+
+  this.Construct.prototype.showMsg = function(msg){
+    this.value = msg;
+    this.state = true;
   }
 
-  this.Data.prototype.setValue = setValue;
-
-
-  //CONSTRUCTOR FUNCTION FOR ALL INPUT TEXT
-  _self.InputText = function(value){
-    this.value = '';
-    this.disabled = false;
+  this.Construct.prototype.hideMsg = function(msg){
+    this.value = "";
+    this.state = false;
   }
 
-  _self.InputText.prototype.setValue = setValue;
 
-}]);
+});
