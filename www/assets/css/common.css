@@ -9,15 +9,6 @@
   height: 0;
 }
 
-
-
-
-
-
-
-
-/*Class for disabling element selection*/
-
 .no-select {
   -webkit-touch-callout: none;
   -webkit-user-select: none;
@@ -26,15 +17,6 @@
   -ms-user-select: none;
   user-select: none;
 }
-
-
-
-
-
-
-
-
-/*Prevent the child's margin moving the parent*/
 
 .parent::before,
 .parent::after {
@@ -214,5 +196,5 @@ input.padding-left-15 {
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.6);
-  z-index: 10000;
+  z-index: 100;
 }
