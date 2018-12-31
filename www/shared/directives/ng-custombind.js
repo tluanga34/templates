@@ -1,13 +1,18 @@
 //Bind data to the element. Alternative for ng-bind-html
-app.directive("ngCustombind",function(){
-	return {
-		scope : {
-			ngCustombind : "="
-		},
-		link : function(scope, elem, attr){			
-			scope.$watch('ngCustombind', function(newValue, oldValue) {
-				elem.html(scope.ngCustombind);
-			});
+angular.module('app')
+
+	.directive("htmlBind", ["$compile", "$parse", function ($compile, $parse) {
+
+		return {
+			link: function (scope, elem, attr) {
+				
+				scope.$watch(attr.htmlBind, function(){
+					var scopeExpression = $parse(attr.htmlBind)(scope);
+					elem.html(scopeExpression);
+					$compile(elem.contents())(scope);
+				});
+			}
 		}
-	}
-});
+
+
+	}]);
