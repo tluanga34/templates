@@ -24,11 +24,10 @@ sudo apt install -y code
 sudo apt install -y apache2
 sudo apt install -y google-chrome
 sudo apt install -y sublime-text-installer
-sudo apt install -y chromium-browser
-sudo apt install -y default-jdk
-sudo apt install -y jq
-nvm install node
-sudo apt install -y npm
+sudo apt install -y default-jdk openjdk-8-jdk
+sudo apt install -y gradle
+nvm install 10.13.0
 npm install -g bower
 npm install -g grunt-cli
 npm install -g karma
+npm install -g ionic@2.2.1 cordova@6.5.0
